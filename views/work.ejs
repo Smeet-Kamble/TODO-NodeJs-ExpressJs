@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <div class="container">
+
+        <div id="navbar">
+            <ul id="nav">
+                <li>
+                    <a id="today"  href="/" style="text-decoration:none"> Today</a>
+                </li>
+                <li>
+                    <a id="work" class="actv" href="/work.ejs" style="text-decoration:none"> Work</a>
+                </li>
+            </ul>
+        </div>
+
+        <section id="notepad">
+        <div id="pad">
+            <div class="heading">
+                <h1><%= dayR %>, <%= monR %> <%= daynum %></h1>
+            </div>
+
+            <form action="/submit" method="post" class="input">
+                <input type="text" name="input-work" id="input" placeholder="New item" required="">
+                <button type="submit">+</button>
+            </form>
+            
+            <div class="worklist">
+                <% if(locals.items) { %>
+                    <% for(var i=1;i<=items.length;i++){ %>
+                        <div class="list">
+                            <input type="checkbox" id=<%= "task-check-"+i %>>
+                            <div class="task-item">
+                                <h4 id= <%= "task-text-"+i %>> <%= items[i-1] %> </h4>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+
+        </div>
+        </section>
+        
+<%- include("partials/footer.ejs") %> 
